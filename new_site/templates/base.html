@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}"> <!--подключаем css-->
+    {% block css %}{% endblock %}
+
+</head>
+<body>
+{%include 'include/navigation.html'%}
+
+    {% block slider %}{% endblock %}
+
+    {% block content %}{% endblock %}
+
+    {% block pagination %}{% endblock %}
+
+{%include 'include/footer.html'%}
+</body>
+</html>
