@@ -60,7 +60,7 @@ body {
 }
 
 #footer a:hover {
-    color: #EC5538;
+    color: #5f38ec;
 }
 
 #footer ul {
@@ -71,5 +71,6 @@ body {
 
 #footer ul>li {
     display: inline-block;
-    margin-left: 15px;
+    margin-left: 25px;
 }
+

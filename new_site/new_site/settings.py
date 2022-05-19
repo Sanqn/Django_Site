@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'blog',
     'bootstrap5',
     'bootstrap4',
-    # 'ckeditor',
-    # 'ckeditor_uploader',
+    'ckeditor',
+    'ckeditor_uploader',
     # 'taggit',
 ]
 
@@ -124,11 +124,45 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
+   os.path.join(BASE_DIR, "static"),
+   ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+####################################
+    ##  CKEDITOR CONFIGURATION ##
+####################################
+
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_CONFIGS = {
+    "default": {
+        "removePlugins": "stylesheetparser",
+        'allowedContent': True,
+        'toolbar_Full': [
+        ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ],
+        ['Image', 'Flash', 'Table', 'HorizontalRule'],
+        ['TextColor', 'BGColor'],
+        ['Smiley','sourcearea', 'SpecialChar'],
+        [ 'Link', 'Unlink', 'Anchor' ],
+        [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ],
+        [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ],
+        [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
+        [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ],
+        [ 'Maximize', 'ShowBlocks' ]
+    ],
+    }
+}
+
+###################################
