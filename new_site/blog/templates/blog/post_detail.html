@@ -32,6 +32,8 @@
             <p class="text-right">Public by {{ post.create_at }}</p>
             <hr>
         </div>
+        {%include 'blog/include/aside.html'%}
     </div>
+    {%include 'blog/include/comments.html'%}
 </div>
 {% endblock %}
