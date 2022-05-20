@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+{% endblock %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block slider %}
+{%include 'blog/include/slider.html'%}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <nav aria-label="breadcrumb" class="mt-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Main</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ post.h1 }}</li>
+                </ol>
+            </nav>
+            <img class="img-fluid rounded " src="{{ post.image.url }}" alt="">
+            <hr>
+            <p class="lead">
+            {{ post.content|safe }}
+            </p>
+            <hr>
+            <p class="lead text-right">Author: {{ post.author }}</p>
+            <hr>
+            <p class="text-right">Public by {{ post.create_at }}</p>
+            <hr>
+        </div>
+    </div>
+</div>
+{% endblock %}
