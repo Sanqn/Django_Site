@@ -16,3 +16,10 @@ h1 {
     margin-top: 15px;
 }
 
+#signup > p{
+    color: #595959;
+}
+
+#signup {
+    margin-bottom: 20px;
+}

@@ -1,4 +1,5 @@
-from django.http import HttpResponse, Http404
+from django.contrib.auth import login
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from .models import Post
@@ -29,9 +30,18 @@ class PostDetailView(View):
         return render(request, 'blog/post_detail.html', context={'post': post})
 
 
-class SigUpFormView(View):
+class SignUpView(View):
     def get(self, request):
-        forms = SigUpForm()
-        return render(request, 'blog/signup.html', context={'forms': forms})
+        form = SigUpForm()
+        return render(request, 'blog/signup.html', context={'form': form})
 
-
+    def post(self, request, *args, **kwargs):
+        form = SigUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/')
+        return render(request, 'myblog/signup.html', context={
+            'form': form,
+        })

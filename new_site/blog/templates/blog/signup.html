@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}SignUp{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+{% endblock %}
+
+{% block slider %}
+{%include 'blog/include/slider.html'%}
+{% endblock %}
+
+{% block content %}
+<div id='signup' class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center">
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <form class="form-signin" method="post" action="{% url 'signup' %}">
+                    {% csrf_token %}
+                    <h1 class="h3 mb-3 mt-3 font-weight-normal">To signup, enter your username and password</h1>
+                    {{ form.username }}
+                    {{ form.password }}
+                    {{ form.repeat_password }}
+                    <button class="btn mt-2 btn-lg btn-primary btn-block" type="submit">SignUp</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
