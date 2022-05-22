@@ -15,7 +15,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 class MainHome(View):
     def get(self, request, *args, **kwargs):
-        posts = Post.objects.all()
+        posts = Post.objects.get_queryset().order_by('id')
         paginator = Paginator(posts, 6)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
