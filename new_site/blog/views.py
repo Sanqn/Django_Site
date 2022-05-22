@@ -2,6 +2,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from .models import Post
+from .forms import SigUpForm
 from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -26,3 +27,9 @@ class PostDetailView(View):
     def get(self, request, slug, *args, **kwargs):
         post = get_object_or_404(Post, url=slug)
         return render(request, 'blog/post_detail.html', context={'post': post})
+
+
+class SigUpFormView(View):
+    def get(self, request):
+        forms = SigUpForm()
+        return render(request, 'blog/login.html', context={'forms': forms})
