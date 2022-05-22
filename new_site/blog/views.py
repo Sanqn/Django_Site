@@ -32,4 +32,6 @@ class PostDetailView(View):
 class SigUpFormView(View):
     def get(self, request):
         forms = SigUpForm()
-        return render(request, 'blog/login.html', context={'forms': forms})
+        return render(request, 'blog/signup.html', context={'forms': forms})
+
+
