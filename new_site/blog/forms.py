@@ -6,9 +6,10 @@ from django import forms
 class SigUpForm(forms.Form):
     username = forms.CharField(
         max_length=100,
+        label='Username',
         required=True,
         widget=forms.TextInput(attrs={
-            'class': "form-control",
+            'class': "form-control mt-2",
             'id': "inputUsername",
             'placeholder': "Input username",
 
@@ -16,9 +17,10 @@ class SigUpForm(forms.Form):
     )
 
     password = forms.CharField(
+        label='Password',
         required=True,
         widget=forms.PasswordInput(attrs={
-            'class': "form-control",
+            'class': "form-control mt-2",
             'id': "inputPassword",
             'placeholder': "Input password",
         }),
@@ -26,7 +28,7 @@ class SigUpForm(forms.Form):
     repeat_password = forms.CharField(
         required=True,
         widget=forms.PasswordInput(attrs={
-            'class': "form-control",
+            'class': "form-control mt-2",
             'id': "ReInputPassword",
             'placeholder': "Repeat password",
         }),
@@ -49,3 +51,24 @@ class SigUpForm(forms.Form):
         user.save()
         auth = authenticate(**self.cleaned_data)
         return auth
+
+
+class SignInForm(forms.Form):
+    username = forms.CharField(
+        max_length=100,
+        label='Username',
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': "form-control mt-2",
+            'id': "inputUsername",
+        }),
+    )
+
+    password = forms.CharField(
+        label='Password',
+        required=True,
+        widget=forms.PasswordInput(attrs={
+            'class': "form-control mt-2",
+            'id': "inputPassword",
+        }),
+    )

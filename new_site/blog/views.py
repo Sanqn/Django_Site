@@ -1,11 +1,10 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from .models import Post
-from .forms import SigUpForm
+from .forms import SigUpForm, SignInForm
 from django.core.paginator import Paginator
-from django.core.exceptions import ObjectDoesNotExist
 
 
 ## Post without pagination
@@ -42,6 +41,27 @@ class SignUpView(View):
             if user is not None:
                 login(request, user)
                 return HttpResponseRedirect('/')
-        return render(request, 'myblog/signup.html', context={
+        return render(request, 'blog/signup.html', context={
+            'form': form,
+        })
+
+
+class SignInView(View):
+    def get(self, request):
+        form = SignInForm
+        return render(request, 'blog/signin.html', context={
+            'form': form,
+        })
+
+    def post(self, request, *args, **kwargs):
+        form = SignInForm(request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/')
+        return render(request, 'blog/signin.html', context={
             'form': form,
         })

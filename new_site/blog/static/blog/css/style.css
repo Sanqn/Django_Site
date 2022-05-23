@@ -22,4 +22,16 @@ h1 {
 
 #signup {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#signin > p{
+    color: #595959;
+}
+
+#signin {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
 }
