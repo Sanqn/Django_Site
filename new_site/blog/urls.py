@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 from . import views
-from .views import MainHome, PostDetailView, SignUpView, SignInView
+from .views import MainHome, PostDetailView, SignUpView, SignInView, FeedbackView, SuccessView
 from django.conf import settings
 
 urlpatterns = [
@@ -10,5 +10,7 @@ urlpatterns = [
     path('signup/', SignUpView.as_view(), name='signup'),
     path('signin/', SignInView.as_view(), name='signin'),
     path('signout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='signout'),
+    path('contact/', FeedbackView.as_view(), name='contact'),
+    path('contact/success', SuccessView.as_view(), name='success'),
 ]
 

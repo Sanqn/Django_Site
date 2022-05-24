@@ -35,3 +35,7 @@ h1 {
     display: flex;
     justify-content: center;
 }
+
+#success {
+    margin: 50px;
+}

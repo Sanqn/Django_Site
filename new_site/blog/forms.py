@@ -76,11 +76,12 @@ class SignInForm(forms.Form):
 class FeedBackForm(forms.Form):
     name = forms.CharField(
         max_length=100,
+        label='Name',
         required=True,
         widget=forms.TextInput(attrs={
             'class': "form-control",
             'id': "inputUsername",
-            'placeholder': "Your name"
+            'placeholder': "Your name",
         }),
     )
 

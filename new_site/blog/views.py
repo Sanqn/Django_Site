@@ -71,7 +71,7 @@ class SignInView(View):
 class FeedbackView(View):
     def get(self, request):
         feed = FeedBackForm()
-        return render(request, 'blog/feetback.html', context={
+        return render(request, 'blog/contact.html', context={
             'feed': feed,
             'title': 'Message me'
         })
@@ -88,7 +88,12 @@ class FeedbackView(View):
             except BadHeaderError:
                 return HttpResponse('Invalid title')
             return HttpResponseRedirect('success')
-        return render(request, 'blog/feetback.html', context={
+        return render(request, 'blog/contact.html', context={
             'feed': feed,
         })
 
+class SuccessView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'blog/success.html', context={
+            'title': 'Thanks'
+        })

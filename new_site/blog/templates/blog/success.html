@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block title %}Contact{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+{% endblock %}
+
+{% block slider %}
+{%include 'blog/include/slider.html'%}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <nav aria-label="breadcrumb" class="mt-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Main</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Success</li>
+                </ol>
+            </nav>
+                <div id="success" class="row">
+                    <div class="col-md-12">
+                    <h1 class="text-md-center">Letter sent</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
