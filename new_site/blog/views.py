@@ -80,11 +80,11 @@ class FeedbackView(View):
         feed = FeedBackForm(request.POST)
         if feed.is_valid():
             name = feed.cleaned_data['name']
-            email = feed.cleaned_data['email']
+            from_email = feed.cleaned_data['email']
             subject = feed.cleaned_data['subject']
             message = feed.cleaned_data['message']
             try:
-                send_mail(f'От {name} | {subject}', message, email, ['alex@gmail.com'])
+                send_mail(f'От {name} | {subject}', message, from_email, [from_email])
             except BadHeaderError:
                 return HttpResponse('Invalid title')
             return HttpResponseRedirect('success')
