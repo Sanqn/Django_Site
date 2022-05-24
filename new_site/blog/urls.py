@@ -11,3 +11,4 @@ urlpatterns = [
     path('signin/', SignInView.as_view(), name='signin'),
     path('signout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='signout'),
 ]
+

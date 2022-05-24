@@ -3,8 +3,9 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from .models import Post
-from .forms import SigUpForm, SignInForm
+from .forms import SigUpForm, SignInForm, FeedBackForm
 from django.core.paginator import Paginator
+from django.core.mail import send_mail, BadHeaderError
 
 
 ## Post without pagination
@@ -65,3 +66,29 @@ class SignInView(View):
         return render(request, 'blog/signin.html', context={
             'form': form,
         })
+
+
+class FeedbackView(View):
+    def get(self, request):
+        feed = FeedBackForm()
+        return render(request, 'blog/feetback.html', context={
+            'feed': feed,
+            'title': 'Message me'
+        })
+
+    def post(self, request):
+        feed = FeedBackForm(request.POST)
+        if feed.is_valid():
+            name = feed.cleaned_data['name']
+            email = feed.cleaned_data['email']
+            subject = feed.cleaned_data['subject']
+            message = feed.cleaned_data['message']
+            try:
+                send_mail(f'От {name} | {subject}', message, email, ['alex@gmail.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid title')
+            return HttpResponseRedirect('success')
+        return render(request, 'blog/feetback.html', context={
+            'feed': feed,
+        })
+

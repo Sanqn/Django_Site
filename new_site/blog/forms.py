@@ -72,3 +72,45 @@ class SignInForm(forms.Form):
             'id': "inputPassword",
         }),
     )
+
+class FeedBackForm(forms.Form):
+    name = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': "form-control",
+            'id': "inputUsername",
+            'placeholder': "Your name"
+        }),
+    )
+
+    email = forms.EmailField(
+        max_length=100,
+        required=True,
+        widget=forms.EmailInput(attrs={
+            'class': "form-control",
+            'id': "Email",
+            'placeholder': "Email"
+        }),
+    )
+
+    subject = forms.CharField(
+        max_length=250,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'id': 'subject',
+            'placeholder': "Subject"
+        })
+    )
+    message = forms.CharField(
+        widget=forms.Textarea(attrs={
+            'class': 'form-control md-textarea',
+            'id': 'message',
+            'rows': 2,
+            'placeholder': "Your message"
+        })
+    )
+
+
+
