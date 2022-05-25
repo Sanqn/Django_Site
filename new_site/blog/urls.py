@@ -15,3 +15,6 @@ urlpatterns = [
     path('search/', SearchResultsView.as_view(), name='search'),
 ]
 
+
+
+
