@@ -97,3 +97,9 @@ class SuccessView(View):
         return render(request, 'blog/success.html', context={
             'title': 'Thanks'
         })
+
+class SearchResultsView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'blog/search.html', context={
+            'title': 'search'
+        })

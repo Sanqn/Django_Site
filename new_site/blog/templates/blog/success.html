@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-    {% block title %}Contact{% endblock %}
+    {% block title %}Success{% endblock %}
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
@@ -17,6 +17,7 @@
             <nav aria-label="breadcrumb" class="mt-4">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{% url 'home' %}">Main</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'contact' %}">Contacts</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Success</li>
                 </ol>
             </nav>
