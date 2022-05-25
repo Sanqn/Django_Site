@@ -8,6 +8,7 @@ from django.core.paginator import Paginator
 from django.core.mail import send_mail, BadHeaderError
 from django.db.models import Q
 from taggit.models import Tag
+from django.views.generic import ListView, DetailView
 
 
 ## Post without pagination
@@ -19,7 +20,7 @@ from taggit.models import Tag
 
 class MainHome(View):
     def get(self, request, *args, **kwargs):
-        posts = Post.objects.get_queryset().order_by('id')
+        posts = Post.objects.all()
         paginator = Paginator(posts, 6)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
