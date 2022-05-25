@@ -7,6 +7,7 @@ from .forms import SigUpForm, SignInForm, FeedBackForm
 from django.core.paginator import Paginator
 from django.core.mail import send_mail, BadHeaderError
 from django.db.models import Q
+from taggit.models import Tag
 
 
 ## Post without pagination
@@ -28,7 +29,13 @@ class MainHome(View):
 class PostDetailView(View):
     def get(self, request, slug, *args, **kwargs):
         post = get_object_or_404(Post, url=slug)
-        return render(request, 'blog/post_detail.html', context={'post': post})
+        common_tags = Post.tag.most_common()
+        last_posts = Post.objects.all().order_by('-id')[:5]
+        return render(request, 'blog/post_detail.html', context={
+            'post': post,
+            'common_tags': common_tags,
+            'last_posts': last_posts
+        })
 
 
 class SignUpView(View):
@@ -114,4 +121,15 @@ class SearchResultsView(View):
             'title': 'search',
             'results_page_obj': results_page_obj,
             'count': len(results)
+        })
+
+class TagView(View):
+    def get(self, request, slug,  *args, **kwargs):
+        tag = get_object_or_404(Tag, slug=slug)
+        posts = Post.objects.filter(tag=tag)
+        common_tags = Post.tag.most_common()
+        return render(request, 'blog/tag.html', context={
+            'title': f'#Tag {tag}',
+            'posts': posts,
+            'common_tags': common_tags
         })

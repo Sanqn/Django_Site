@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
 {% endblock %}
 
 {% block title %}{{ post.title }}{% endblock %}
@@ -24,8 +24,14 @@
             <img class="img-fluid rounded " src="{{ post.image.url }}" alt="">
             <hr>
             <p class="lead">
-            {{ post.content|safe }}
+                {{ post.content|safe }}
             </p>
+            <hr>
+            <div class="d-flex justify-content-end">
+                {% for tag in post.tag.all %}
+                <a href="{% url 'tag' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
+                {% endfor %}
+            </div>
             <hr>
             <p class="lead text-right">Author: {{ post.author }}</p>
             <hr>

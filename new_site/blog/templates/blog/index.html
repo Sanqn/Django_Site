@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-<!--    TITLE УНИКАЛЬНЫЙ -->
 
     {% block title %}Blog, Mine page!{% endblock %}
 {% block css %}
@@ -28,12 +27,15 @@
             <img src="media/{{post.image}}" alt="" class="card-img-top">
             <div class="card-body">
               <h4 class="card-title">{{post.h1}}</h4>
-              <p class="card-text">{{post.description|safe|truncatechars:100}}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
+              {{ post.description|safe|truncatechars:100 }}<br>
+                {% for tag in post.tag.all %}
+                  <a href="{% url 'tag' slug=tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
+                {% endfor %}
+                  <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
                   <a href="{% url 'detail_page' slug=post.url %}" class="btn btn-sm btn-outline-secondary">About</a>
                 </div>
-                <small class="text-muted">{{create_at}}</small>
+                <small class="text-muted">{{post.create_at}}</small>
               </div>
             </div>
           </div>
