@@ -21,7 +21,7 @@
                 </ol>
             </nav>
             <p class="lead">Search notes: {{ count }}</p>
-            {% for result in results %}
+            {% for result in results_page_obj %}
             <a href="{% url 'detail_page' slug=result.url %}"><h2>{{ result.h1 }}</h2></a>
             <p>{{ result.description|safe }}</p>
             <hr>
@@ -29,4 +29,7 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block pagination %}
+{%include 'blog/include/pagination_search.html'%}
 {% endblock %}

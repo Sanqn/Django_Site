@@ -107,8 +107,11 @@ class SearchResultsView(View):
             results = Post.objects.filter(
                 Q(h1__icontains=search) | Q(content__icontains=search)
             )
+        paginator = Paginator(results, 6)
+        page_number = request.GET.get('page')
+        results_page_obj = paginator.get_page(page_number)
         return render(request, 'blog/search.html', context={
             'title': 'search',
-            'results': results,
+            'results_page_obj': results_page_obj,
             'count': len(results)
         })
