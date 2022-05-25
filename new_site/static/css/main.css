@@ -48,6 +48,7 @@ body {
 }
 
 #footer {
+    flex: 0 0 auto;
     padding-top: 30px;
     padding-bottom: 30px;
     color: #fff;
@@ -73,4 +74,3 @@ body {
     display: inline-block;
     margin-left: 25px;
 }
-

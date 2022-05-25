@@ -6,6 +6,7 @@ from .models import Post
 from .forms import SigUpForm, SignInForm, FeedBackForm
 from django.core.paginator import Paginator
 from django.core.mail import send_mail, BadHeaderError
+from django.db.models import Q
 
 
 ## Post without pagination
@@ -100,6 +101,14 @@ class SuccessView(View):
 
 class SearchResultsView(View):
     def get(self, request, *args, **kwargs):
+        search = self.request.GET.get('q')
+        results = ''
+        if search:
+            results = Post.objects.filter(
+                Q(h1__icontains=search) | Q(content__icontains=search)
+            )
         return render(request, 'blog/search.html', context={
-            'title': 'search'
+            'title': 'search',
+            'results': results,
+            'count': len(results)
         })
