@@ -35,7 +35,7 @@ class PostDetailView(View):
         return render(request, 'blog/post_detail.html', context={
             'post': post,
             'common_tags': common_tags,
-            'last_posts': last_posts
+            'last_posts': last_posts,
         })
 
 
