@@ -46,9 +46,9 @@ class PostDetailView(View):
             text = request.POST['text']
             username = self.request.user
             post = get_object_or_404(Post, url=slug)
-            comment = Comment.objects.cteate(post=post, username=username, text=text)
+            comment = Comment.objects.create(post=post, username=username, text=text)
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-        return render(request, 'blog/post_detail.html', context={
+        return render(request, 'myblog/post_detail.html', context={
             'comment_form': comment_form
         })
 
