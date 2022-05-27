@@ -11,7 +11,7 @@
         </form>
     </div>
     {% else %}
-    <h6 class="card-header"><a href="{% url 'signin' %}">Login</a> or <a href="{% url 'signup' %}">Signup</a> to comment</h6>
+    <h6 class="card-header"><a href="{% url 'signin' %}">Login</a> или <a href="{% url 'signup' %}">Signup</a> to commit</h6>
     {% endif %}
 </div>
 {% for comment in post.comments.all %}
