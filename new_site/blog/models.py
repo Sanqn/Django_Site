@@ -6,7 +6,7 @@ from taggit.managers import TaggableManager
 
 
 class Post(models.Model):
-    h1 = models.CharField(max_length=200)
+    h1 = models.CharField(max_length=210)
     title = models.CharField(max_length=200)
     url = models.SlugField()
     description = RichTextUploadingField()
