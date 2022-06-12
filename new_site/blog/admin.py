@@ -12,4 +12,5 @@ admin.site.register(Post, AdminPost)
 class AdminComment(admin.ModelAdmin):
     pass
 
+
 admin.site.register(Comment, AdminComment)
